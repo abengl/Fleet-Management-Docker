@@ -1,0 +1,59 @@
+version: "3.9"
+
+networks:
+  api_network:
+    driver: bridge
+
+services:
+  api_app:
+    container_name: api_app
+    image: aben751/api_app:1.0.0
+    build:
+      context: .  # Instructs Docker to build the image from the Dockerfile located in the current directory.
+      dockerfile: Dockerfile
+    networks:
+      - api_network
+    ports:
+      - "8080:8080"
+    environment:
+      - DATABASE_URL=jdbc:postgresql://api_db:5432/api_fleet
+      - DATABASE_USERNAME=postgres
+      - DATABASE_PASSWORD=password
+      - JWT_PRIVATE_KEY=d024beb2c3933f7605a6fb002555b7eb634747770ce97936125c1ced838e1ec4
+      - JWT_USER_GENERATOR=AUTH0JWT-ABEN
+      - JWT_EXPIRATION_TIME=86400000
+    depends_on:
+      api_db:
+        condition: service_healthy
+    healthcheck:
+      test: [ "CMD-SHELL", "wget -qO- http://localhost:8080/actuator/health || exit 1" ]
+      interval: 10s
+      timeout: 30s
+      start_period: 60s
+      retries: 3
+    restart: always
+
+  api_db:
+    container_name: api_db
+    image: postgres:16-alpine
+    restart: always  # Ensures that the container restarts automatically if it crashes or is stopped.
+    shm_size: 128mb  # Sets the shared memory size to 128MB for improved performance.
+    networks:
+      - api_network
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_USER: postgres  # superuser username.
+      POSTGRES_PASSWORD: password  # superuser password.
+      POSTGRES_DB: api_fleet  # default db name to be created.
+    volumes:
+      - api_data:/var/lib/postgresql/data
+      - ./src/main/resources/data:/docker-entrypoint-initdb.d/  # Mount SQL data
+    healthcheck:
+      test: [ "CMD-SHELL", "pg_isready -U postgres -d api_fleet -p 5432" ]
+      interval: 5s
+      timeout: 3s
+      retries: 5
+
+volumes:
+  api_data:  # Declare named volume
