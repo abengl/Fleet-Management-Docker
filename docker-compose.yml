@@ -7,10 +7,10 @@ networks:
 services:
   api_app:
     container_name: api_app
-    image: aben751/api_app:1.0.0
-    build:
-      context: .  # Instructs Docker to build the image from the Dockerfile located in the current directory.
-      dockerfile: Dockerfile
+    image: aben751/api_app:1.0.1
+#    build:
+#      context: .  # Instructs Docker to build the image from the Dockerfile located in the current directory.
+#      dockerfile: Dockerfile
     networks:
       - api_network
     ports:

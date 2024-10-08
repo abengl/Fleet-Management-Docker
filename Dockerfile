@@ -1,11 +1,16 @@
-# Stage 1: Using the JDK to copy the JAR
+# Stage 1: Build the application JAR
 FROM eclipse-temurin:21-jdk-alpine AS builder
-ARG JAR_FILE=target/api-rest-0.0.1-SNAPSHOT.jar
 WORKDIR /app
-COPY ${JAR_FILE} app.jar
+COPY .mvn/ .mvn/
+COPY mvnw .
+COPY pom.xml .
+COPY src ./src
+RUN ./mvnw clean package -DskipTests
 
 # Stage 2: Use a lighter JRE for runtime
 FROM eclipse-temurin:21-jre-alpine
 WORKDIR /app
-COPY --from=builder /app/app.jar app.jar
+COPY --from=builder /app/target/api-rest-0.0.1-SNAPSHOT.jar app.jar
 ENTRYPOINT ["java", "-jar", "app.jar"]
+
+
