@@ -1,140 +1,20 @@
--- Insert ROLES
-INSERT INTO api.roles (role_name)
-VALUES ('ADMIN');
-INSERT INTO api.roles (role_name)
-VALUES ('DEVELOPER');
-INSERT INTO api.roles (role_name)
-VALUES ('USER');
-INSERT INTO api.roles (role_name)
-VALUES ('GUEST');
-
--- Insert USERS
-INSERT INTO api.users (name, email, password, is_enabled, account_non_expired, account_non_locked,
-                       credentials_non_expired, role_id)
-SELECT 'admin',
-       'admin@test.com',
-       '$2a$10$/R06Zz2awp87D/iFBD.cH.QoMZUAJEd59fsZOgK668tujGem1IEuy',
-       true,
-       true,
-       true,
-       true,
-       r.id
-FROM api.roles r
-WHERE r.role_name = 'ADMIN';
-
-INSERT INTO api.users (name, email, password, is_enabled, account_non_expired, account_non_locked,
-                       credentials_non_expired, role_id)
-SELECT 'developer',
-       'developer@mail.com',
-       '$2a$10$cMY29RPYoIHMJSuwRfoD3eQxU1J5Rww4VnNOUOAEPqCBshkNfrEf6',
-       true,
-       true,
-       true,
-       true,
-       r.id
-FROM api.roles r
-WHERE r.role_name = 'DEVELOPER';
-
-INSERT INTO api.users (name, email, password, is_enabled, account_non_expired, account_non_locked,
-                       credentials_non_expired, role_id)
-SELECT 'user',
-       'user@mail.com',
-       '$2a$10$cMY29RPYoIHMJSuwRfoD3eQxU1J5Rww4VnNOUOAEPqCBshkNfrEf6',
-       true,
-       true,
-       true,
-       true,
-       r.id
-FROM api.roles r
-WHERE r.role_name = 'USER';
-
-INSERT INTO api.users (name, email, password, is_enabled, account_non_expired, account_non_locked,
-                       credentials_non_expired, role_id)
-SELECT 'guest',
-       'guest@mail.com',
-       '$2a$10$cMY29RPYoIHMJSuwRfoD3eQxU1J5Rww4VnNOUOAEPqCBshkNfrEf6',
-       true,
-       true,
-       true,
-       true,
-       r.id
-FROM api.roles r
-WHERE r.role_name = 'GUEST';
-
-INSERT INTO api.users (name, email, password, is_enabled, account_non_expired, account_non_locked,
-                       credentials_non_expired, role_id)
-SELECT 'sofia',
-       'sofia@mail.com',
-       '$2a$10$cMY29RPYoIHMJSuwRfoD3eQxU1J5Rww4VnNOUOAEPqCBshkNfrEf6',
-       true,
-       true,
-       true,
-       true,
-       r.id
-FROM api.roles r
-WHERE r.role_name = 'ADMIN';
-
-INSERT INTO api.users (name, email, password, is_enabled, account_non_expired, account_non_locked,
-                       credentials_non_expired, role_id)
-SELECT 'alice',
-       'alice@mail.com',
-       '$2a$10$cMY29RPYoIHMJSuwRfoD3eQxU1J5Rww4VnNOUOAEPqCBshkNfrEf6',
-       true,
-       true,
-       true,
-       true,
-       r.id
-FROM api.roles r
-WHERE r.role_name = 'USER';
-
-INSERT INTO api.users (name, email, password, is_enabled, account_non_expired, account_non_locked,
-                       credentials_non_expired, role_id)
-SELECT 'bob',
-       'bob@mail.com',
-       '$2a$10$cMY29RPYoIHMJSuwRfoD3eQxU1J5Rww4VnNOUOAEPqCBshkNfrEf6',
-       true,
-       true,
-       true,
-       true,
-       r.id
-FROM api.roles r
-WHERE r.role_name = 'USER';
-
-INSERT INTO api.users (name, email, password, is_enabled, account_non_expired, account_non_locked,
-                       credentials_non_expired, role_id)
-SELECT 'andrea',
-       'andrea@mail.com',
-       '$2a$10$cMY29RPYoIHMJSuwRfoD3eQxU1J5Rww4VnNOUOAEPqCBshkNfrEf6',
-       true,
-       true,
-       true,
-       true,
-       r.id
-FROM api.roles r
-WHERE r.role_name = 'GUEST';
-
-INSERT INTO api.users (name, email, password, is_enabled, account_non_expired, account_non_locked,
-                       credentials_non_expired, role_id)
-SELECT 'jane',
-       'jane@mail.com',
-       '$2a$10$cMY29RPYoIHMJSuwRfoD3eQxU1J5Rww4VnNOUOAEPqCBshkNfrEf6',
-       true,
-       true,
-       true,
-       true,
-       r.id
-FROM api.roles r
-WHERE r.role_name = 'GUEST';
-
-INSERT INTO api.users (name, email, password, is_enabled, account_non_expired, account_non_locked,
-                       credentials_non_expired, role_id)
-SELECT 'mateo',
-       'mateo@mail.com',
-       '$2a$10$cMY29RPYoIHMJSuwRfoD3eQxU1J5Rww4VnNOUOAEPqCBshkNfrEf6',
-       true,
-       true,
-       true,
-       true,
-       r.id
-FROM api.roles r
-WHERE r.role_name = 'DEVELOPER';
+INSERT INTO api.trajectories (taxi_id, date, latitude, longitude)
+VALUES ('2210', '2008-02-02 14:22:40', 116.30508, 39.96525);
+INSERT INTO api.trajectories (taxi_id, date, latitude, longitude)
+VALUES ('2210', '2008-02-02 14:25:54', 116.3043, 39.9622);
+INSERT INTO api.trajectories (taxi_id, date, latitude, longitude)
+VALUES ('2210', '2008-02-02 14:30:55', 116.32259, 39.96596);
+INSERT INTO api.trajectories (taxi_id, date, latitude, longitude)
+VALUES ('2210', '2008-02-02 14:32:44', 116.34547, 39.96616);
+INSERT INTO api.trajectories (taxi_id, date, latitude, longitude)
+VALUES ('2210', '2008-02-02 14:35:57', 116.34986, 39.94643);
+INSERT INTO api.trajectories (taxi_id, date, latitude, longitude)
+VALUES ('2210', '2008-02-02 14:37:45', 116.34978, 39.94199);
+INSERT INTO api.trajectories (taxi_id, date, latitude, longitude)
+VALUES ('2210', '2008-02-02 14:40:59', 116.3495, 39.93071);
+INSERT INTO api.trajectories (taxi_id, date, latitude, longitude)
+VALUES ('2210', '2008-02-02 14:42:47', 116.34975, 39.92419);
+INSERT INTO api.trajectories (taxi_id, date, latitude, longitude)
+VALUES ('2210', '2008-02-02 14:46:00', 116.35015, 39.91281);
+INSERT INTO api.trajectories (taxi_id, date, latitude, longitude)
+VALUES ('2210', '2008-02-02 14:47:49', 116.35339, 39.91248);

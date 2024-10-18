@@ -33,7 +33,7 @@ import java.util.Objects;
 public class ApiRestApplication {
 
 	/**
-	 * The main method which serves as the entry point of the Spring Boot application.
+	 * The main method serves as the entry point of the Spring Boot application.
 	 * It launches the application by invoking {@link SpringApplication#run(Class, String[])}.
 	 *
 	 * @param args command-line arguments passed to the application
